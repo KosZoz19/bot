@@ -5,10 +5,10 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Skopiuj pliki
-COPY . .
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Zainstaluj zależności
-RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Uruchom bota
 CMD ["python", "bot.py"]
