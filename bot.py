@@ -1,16 +1,20 @@
 import os
 import openai
-import telegram
-from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
-from telegram.update import Update
+from telegram import Update
+from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes, CommandHandler
+from dotenv import load_dotenv
+load_dotenv()
 
-openai.api_key = os.getenv("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")
-bot_token = os.getenv("8376853322:AAGCUgsNiGhipaedYvNPHCI4MSH3nS_WcnE")
+# Poprawne pobieranie zmiennych środowiskowych
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+bot_token = os.getenv("TELEGRAM_TOKEN")
 onlyfans_link = os.getenv("ONLYFANS_LINK")
 
 user_messages = {}
 
-def handle_message(update: Update, context: CallbackContext):
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     text = update.message.text
 
@@ -20,7 +24,7 @@ def handle_message(update: Update, context: CallbackContext):
     user_messages[user_id].append(text)
 
     if len(user_messages[user_id]) == 5:
-        context.bot.send_message(chat_id=update.effective_chat.id,
+        await context.bot.send_message(chat_id=update.effective_chat.id,
                                  text=f"👙 Jeśli chcesz więcej… zobacz: {onlyfans_link}")
         return
 
@@ -33,14 +37,17 @@ def handle_message(update: Update, context: CallbackContext):
     )
 
     reply = response.choices[0].message.content
-    context.bot.send_message(chat_id=update.effective_chat.id, text=reply)
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=reply)
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Hej! Napisz coś do mnie 💬")
 
 def main():
-    updater = Updater(bot_token, use_context=True)
-    dp = updater.dispatcher
-    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
-    updater.start_polling()
-    updater.idle()
+    app = ApplicationBuilder().token(bot_token).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    print("Bot działa!")
+    app.run_polling()
 
 if __name__ == '__main__':
     main()
