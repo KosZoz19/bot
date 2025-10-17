@@ -1,1386 +1,1180 @@
-<!DOCTYPE html>
-<html lang="ru" id="html-root">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EdTech Agency - Маркетинг-партнёр для EdTech проектов</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #10b981;
-      --primary-dark: #059669;
-      --secondary: #34d399;
-      --dark: #ffffff;
-      --dark-light: #f8f9fa;
-      --dark-lighter: #e9ecef;
-      --light: #ffffff;
-      --text: #000000;
-      --text-muted: #6c757d;
-      --accent: #10b981;
-      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      --shadow: 0 10px 25px rgba(0,0,0,0.1);
-      --border-radius: 12px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--dark);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Header & Navigation */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-    }
-
-    .logo-zilly {
-      font-size: 1.8rem;
-      font-weight: 700;
-      font-style: italic;
-      font-family: 'Brush Script MT', cursive, 'Inter', sans-serif;
-      color: #10b981;
-      text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .main-nav {
-      display: flex;
-      gap: 25px;
-    }
-
-    .main-nav a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .main-nav a:hover {
-      color: var(--primary);
-      background: rgba(16, 185, 129, 0.1);
-    }
-
-    .nav-number {
-      color: white;
-      width: 24px;
-      height: 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
-      margin-right: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-number:nth-child(1) {
-      background: var(--primary);
-      border-radius: 50%;
-    }
-
-    .nav-number:nth-child(2) {
-      background: var(--secondary);
-      border-radius: 4px;
-    }
-
-    .nav-number:nth-child(3) {
-      background: var(--primary-dark);
-      border-radius: 6px;
-      transform: rotate(45deg);
-    }
-
-    .nav-number:nth-child(4) {
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      border-radius: 2px;
-    }
-
-    .other-services-btn {
-      background: var(--gradient);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .other-services-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .lang-toggle {
-      display: flex;
-      background: var(--dark-lighter);
-      border-radius: 20px;
-      padding: 4px;
-    }
-
-    .lang-btn {
-      padding: 6px 12px;
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .lang-btn.active {
-      background: var(--primary);
-      color: white;
-    }
-
-    .menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      text-align: left;
-      padding: 120px 20px 80px;
-      background: var(--light);
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 1200px;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 24px;
-      line-height: 1.2;
-      color: var(--text);
-    }
-
-    .hero-description {
-      font-size: 1.2rem;
-      color: var(--text);
-      margin-bottom: 40px;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: var(--border-radius);
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 16px;
-    }
-
-    .btn-primary {
-      background: var(--gradient);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 2px solid var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    /* Sections */
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 20px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 60px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    .card {
-      background: var(--dark-light);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--border-radius);
-      padding: 30px;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow);
-    }
-
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: var(--text);
-    }
-
-    .card-description {
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Expandable Cards */
-    .expandable-card {
-      cursor: pointer;
-    }
-
-    .card-content {
-      transition: all 0.3s ease;
-    }
-
-    .card-expanded {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .card.expanded .card-expanded {
-      max-height: 200px;
-    }
-
-    .expand-indicator {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 18px;
-      transition: transform 0.3s ease;
-    }
-
-    .card.expanded .expand-indicator {
-      transform: rotate(45deg);
-    }
-
-    /* Process Flow */
-    .process-flow {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 60px 0;
-      position: relative;
-    }
-
-    .process-step {
-      flex: 1;
-      text-align: center;
-      position: relative;
-    }
-
-    .process-number {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: var(--gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0 auto 20px;
-      color: white;
-    }
-
-    .process-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .process-description {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .process-arrow {
-      position: absolute;
-      top: 30px;
-      right: -25px;
-      font-size: 24px;
-      color: var(--primary);
-      z-index: 1;
-    }
-
-    .process-step:last-child .process-arrow {
-      display: none;
-    }
-
-    /* FAQ */
-    .faq-item {
-      margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      background: var(--dark-light);
-    }
-
-    .faq-question {
-      background: var(--dark-lighter);
-      padding: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
-
-    .faq-question:hover {
-      background: rgba(16, 185, 129, 0.1);
-    }
-
-    .faq-answer {
-      display: none;
-      padding: 20px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .faq-toggle {
-      font-size: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.active .faq-toggle {
-      transform: rotate(45deg);
-    }
-
-    /* Cal.com Integration - Improved */
-    .calendar-container {
-      background: var(--light);
-      border-radius: var(--border-radius);
-      padding: 0;
-      margin: 40px auto;
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      box-shadow: var(--shadow);
-      max-width: 100%;
-      overflow: hidden;
-    }
-
-    .calendar-embed {
-      width: 100%;
-      min-height: 700px;
-      border: none;
-      border-radius: var(--border-radius);
-      background: white;
-    }
-
-    .calendar-loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 400px;
-      background: var(--light);
-      color: var(--dark);
-      font-size: 1.1rem;
-    }
-
-    .calendar-fallback {
-      text-align: center;
-      padding: 40px;
-      background: var(--light);
-      color: var(--dark);
-      border-radius: var(--border-radius);
-    }
-
-    .calendar-fallback h3 {
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-
-    .calendar-fallback p {
-      margin-bottom: 15px;
-    }
-
-    .calendar-fallback a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .calendar-fallback a:hover {
-      text-decoration: underline;
-    }
-
-    /* Mobile Calendar Optimization */
-    @media (max-width: 768px) {
-      .calendar-container {
-        margin: 20px 0;
-        border-radius: 8px;
-      }
-      
-      .calendar-embed {
-        min-height: 600px;
-        border-radius: 8px;
-      }
-    }
-
-    /* Contact Info */
-    .contact-info {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .contact-item:hover {
-      color: var(--primary);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark-lighter);
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 80px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .nav-container {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--dark);
-        flex-direction: column;
-        padding: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .nav-container.active {
-        display: flex;
-      }
-
-      .main-nav {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .menu-btn {
-        display: block;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .process-flow {
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .process-arrow {
-        display: none;
-      }
-
-      .contact-info {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .animate-on-scroll.animated {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Trusted By Section */
-    .trusted-by {
-      padding: 60px 20px;
-      background: var(--dark-light);
-      text-align: center;
-    }
-
-    .trusted-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .trusted-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
-      flex-wrap: wrap;
-      opacity: 0.7;
-    }
-
-    .trusted-logo {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      padding: 15px 25px;
-      border: 2px solid var(--dark-lighter);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .trusted-logo:hover {
-      color: var(--primary);
-      border-color: var(--primary);
-      opacity: 1;
-    }
-
-    /* Team Section */
-    .team {
-      padding: 80px 20px;
-      background: var(--light);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .team-member {
-      text-align: center;
-      padding: 20px;
-      border-radius: var(--border-radius);
-      transition: all 0.3s ease;
-    }
-
-    .team-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--dark-lighter);
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: var(--text-muted);
-    }
-
-    .team-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .team-role {
-      font-size: 1rem;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    <div class="logo-zilly">Zilly</div>
-  </div>
-  <div class="menu-btn">☰</div>
-  <div class="nav-container">
-    <nav class="main-nav">
-      <a href="#for"><span class="nav-number">1</span><span data-ru="Для кого" data-en="For Whom">Для кого</span></a>
-      <a href="#cases"><span class="nav-number">2</span><span data-ru="Кейсы" data-en="Cases">Кейсы</span></a>
-      <a href="#about"><span class="nav-number">3</span><span data-ru="О нас" data-en="About">О нас</span></a>
-      <a href="#contact"><span class="nav-number">4</span><span data-ru="Связаться" data-en="Contact">Связаться</span></a>
-    </nav>
-    <a href="#other-services" class="other-services-btn" data-ru="Мы работаем еще с другими" data-en="We work with others too">Мы работаем еще с другими</a>
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="ru">RU</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-    </div>
-  </div>
-</header>
-
-<section class="hero" id="hero">
-  <div class="hero-content animate-on-scroll">
-    <h1>
-      <span data-ru="Zilly — маркетинг-партнёр для EdTech-проектов: от привлечения лидов до построения систем удержания." 
-            data-en="Zilly — marketing partner for EdTech projects: from lead generation to retention systems.">
-        Zilly — маркетинг-партнёр для EdTech-проектов: от привлечения лидов до построения систем удержания.
-      </span>
-    </h1>
-    <p class="hero-description">
-      <span data-ru="Трафик — лишь часть нашей работы. Мы закрываем весь цикл роста" 
-            data-en="Traffic is just part of our work. We cover the entire growth cycle">
-        Трафик — лишь часть нашей работы. Мы закрываем весь цикл роста
-      </span>
-    </p>
-    <div class="hero-cta">
-      <button 
-        data-cal-link="cal_live_0b821391b525deeabb6b077c2a8578ca"
-        data-cal-config='{"layout":"month_view","theme":"light"}'
-        class="btn btn-primary cal-booking-btn">
-        <span data-ru="Назначить встречу" data-en="Schedule Meeting">Назначить встречу</span>
-      </button>
-      <a href="#cases" class="btn btn-secondary">
-        <span data-ru="Посмотреть кейсы" data-en="View Cases">Посмотреть кейсы</span>
-      </a>
-    </div>
-    <p class="hero-subtitle">
-      <span data-ru="Для языковых школ, стартапов, блогеров и университетов" 
-            data-en="For language schools, startups, bloggers and universities">
-        Для языковых школ, стартапов, блогеров и университетов
-      </span>
-    </p>
-  </div>
-</section>
-
-<section id="for" class="animate-on-scroll">
-  <h2 class="section-title" data-ru="Для кого мы работаем" data-en="Who We Work For">Для кого мы работаем</h2>
-  <p class="section-subtitle" data-ru="Сегментация EdTech проектов" data-en="EdTech Project Segmentation">Сегментация EdTech проектов</p>
-  
-  <div class="cards">
-    <div class="card">
-      <span class="card-icon">🌐</span>
-      <h3 class="card-title" data-ru="Языковые школы" data-en="Language Schools">Языковые школы</h3>
-      <p class="card-description" data-ru="Приводим лидов, удерживаем и заполняем группы" data-en="Generate leads, retain and fill groups">Приводим лидов, удерживаем и заполняем группы</p>
-    </div>
+import asyncio
+import json
+import os
+import logging
+import random
+from pathlib import Path
+from time import time
+from typing import Dict, Any
+from aiogram.types import Update, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.enums.chat_member_status import ChatMemberStatus
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode, ContentType
+from aiogram.filters import Command
+from aiogram.types import (
+    Message, CallbackQuery, InlineKeyboardMarkup,
+    InlineKeyboardButton, ChatJoinRequest, InputMediaPhoto, FSInputFile
+)
+from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
+from aiogram.exceptions import TelegramForbiddenError, TelegramBadRequest, TelegramEntityTooLarge
+from dotenv import load_dotenv
+from aiohttp import web
+from aiogram import Bot, Dispatcher, Router, F
+
+logging.basicConfig(level=logging.INFO)
+
+# ========= ENV / INIT =========
+BASE_DIR = Path(__file__).parent
+DATA_DIR = BASE_DIR / "data"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+if not BOT_TOKEN:
+    raise RuntimeError("BOT_TOKEN is required")
+
+RUN_MODE = os.getenv("RUN_MODE", "polling")  # "webhook" on Render, "polling" locally
+WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "supersecret")
+# External URL detection - works with multiple platforms
+EXTERNAL_URL = (
+    os.getenv("RENDER_EXTERNAL_URL") or  # Render.com
+    os.getenv("RAILWAY_STATIC_URL") or  # Railway
+    (os.getenv("REPLIT_DEV_DOMAIN") and f"https://{os.getenv('REPLIT_DEV_DOMAIN')}")
+)
+SITE_URL = os.getenv("SITE_URL", "https://koszoz19.github.io/p2p/")
+LESSON_URL = os.getenv("LESSON_URL", SITE_URL)
+CHANNEL_ID = int(os.getenv("CHANNEL_ID", "0") or 0)  # запасной ID канала (-100...)
+PORT = int(os.getenv("PORT", "10000"))
+
+# отдельные ссылки на уроки
+LESSON1_URL = os.getenv("LESSON1_URL", LESSON_URL)
+LESSON2_URL = os.getenv("LESSON2_URL", LESSON_URL)
+LESSON3_URL = os.getenv("LESSON3_URL", LESSON_URL)
+
+# --- баннеры (из .env) ---
+BANNER_WELCOME = os.getenv("BANNER_WELCOME", "")
+BANNER_AFTER1 = os.getenv("BANNER_AFTER1", "")
+BANNER_AFTER2 = os.getenv("BANNER_AFTER2", "")
+BANNER_AFTER3 = os.getenv("BANNER_AFTER3", "")
+BANNER_AFTER4 = os.getenv("BANNER_AFTER4", "")
+BANNER_AFTER5 = os.getenv("BANNER_AFTER5", "")
+BANNER_BLOCK6 = os.getenv("BANNER_BLOCK6", "")
+BANNER_BLOCK7 = os.getenv("BANNER_BLOCK7", "")
+
+WELCOME_VIDEO_FILE = os.getenv("WELCOME_VIDEO_FILE", "")  # e.g., "videos/welcome.mp4"
+
+L3_FOLLOWUP_VIDEO = os.getenv("L3_FOLLOWUP_VIDEO", "")
+L3_FOLLOWUP_CAPTION = os.getenv("L3_FOLLOWUP_CAPTION", "")
+L3_FOLLOWUP_DELAY = int(os.getenv("L3_FOLLOWUP_DELAY", "5"))
+# Теперь используем путь к файлу или file_id из .env
+raw_l3 = os.getenv("L3_FOLLOWUP_FILE", "") or ""
+L3_FOLLOWUP_FILE = raw_l3.strip().replace("\u200b", "").replace("\ufeff", "").replace("\u2060", "")
+if L3_FOLLOWUP_FILE == "":
+    L3_FOLLOWUP_FILE = ""
+
+DIARY_TG_CHAT_ID = int(os.getenv("DIARY_TG_CHAT_ID", "0") or 0)
+DIARY_TG_JOIN_URL = os.getenv("DIARY_TG_JOIN_URL", "")
+DIARY_URL = os.getenv("DIARY_URL", "https://instagram.com/your_diary_here")
+FORM_URL = os.getenv("FORM_URL", "https://forms.gle/your_form_here")
+
+# задержки напоминаний
+REM1_DELAY = int(os.getenv("REM1_DELAY", "60"))
+REM2_DELAY = int(os.getenv("REM2_DELAY", "300"))
+REM3_DELAY = int(os.getenv("REM3_DELAY", "600"))
+
+# быстрые паузы для следующего тизера (после клика по текущему уроку)
+NEXT_AFTER_1 = int(os.getenv("NEXT_AFTER_1", "8"))
+NEXT_AFTER_2 = int(os.getenv("NEXT_AFTER_2", "8"))
+
+# напоминалки до нажатия «ПОЛУЧИТЬ ДОСТУП»
+ACCESS_REM_DELAYS = [
+    int(x) for x in os.getenv("ACCESS_REM_DELAYS", "120,300,900").split(",")
+    if x.strip().isdigit()
+]
+
+MARK_REMIND_DELAY_1 = int(os.getenv("MARK_REMIND_DELAY_1", "300"))
+MARK_REMIND_DELAY_2 = int(os.getenv("MARK_REMIND_DELAY_2", "300"))
+
+ADMIN_ID = int(os.getenv("ADMIN_ID", "0") or 0)
+
+bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN))
+
+async def send_admin_message(text: str):
+    """Send a message to the admin if ADMIN_ID is set."""
+    if ADMIN_ID:
+        try:
+            await bot.send_message(ADMIN_ID, text)
+        except Exception as e:
+            logging.error("Failed to send admin message: %s", e)
+router = Router()
+DEEP_LINK = ""  # заполним в main()
+SENDING_POSTS: set[int] = set()  # chat_ids that are already sending course posts
+
+# ========= ХРАНИЛКА ПРОГРЕССА (файл) =========
+stats_file = DATA_DIR / "stats.json"
+if not stats_file.exists():
+    stats_file.write_text(json.dumps({"users": {}}, ensure_ascii=False, indent=2))
+
+def _read() -> Dict[str, Any]:
+    try:
+        return json.loads(stats_file.read_text() or "{}")
+    except Exception:
+        return {"users": {}}
+
+def _write(d: Dict[str, Any]):
+    stats_file.write_text(json.dumps(d, ensure_ascii=False, indent=2))
+
+def get_stage(uid: int) -> int:
+    d = _read()
+    return int(d.get("users", {}).get(str(uid), {}).get("stage", 0))
+
+def set_stage(uid: int, stage: int):
+    d = _read()
+    u = d.setdefault("users", {}).setdefault(str(uid), {})
+    u["stage"] = stage
+    u["ts"] = int(time())
+    _write(d)
+
+def set_pm_ok(uid: int, ok: bool):
+    d = _read()
+    u = d.setdefault("users", {}).setdefault(str(uid), {})
+    u["pm_ok"] = bool(ok)
+    _write(d)
+
+def can_pm(uid: int) -> bool:
+    d = _read()
+    return bool(d.get("users", {}).get(str(uid), {}).get("pm_ok", False))
+
+def is_watched(uid: int, n: int) -> bool:
+    d = _read()
+    return bool(d.get("users", {}).get(str(uid), {}).get("watched", {}).get(str(n), False))
+
+def set_watched(uid: int, n: int, watched: bool):
+    d = _read()
+    u = d.setdefault("users", {}).setdefault(str(uid), {})
+    w = u.setdefault("watched", {})
+    w[str(n)] = bool(watched)
+    _write(d)
+
+def set_diary_request(uid: int, requested: bool):
+    """Фіксує, що юзер відправив заявку на підписку в дневник"""
+    d = _read()
+    u = d.setdefault("users", {}).setdefault(str(uid), {})
+    u["diary_request"] = bool(requested)
+    u["diary_ts"] = int(time())
+    _write(d)
+    logging.info("set_diary_request(uid=%s)=%s", uid, requested)
+
+def has_diary_request(uid: int) -> bool:
+    """Чи відправляв юзер заявку на підписку в дневник"""
+    d = _read()
+    val = bool(d.get("users", {}).get(str(uid), {}).get("diary_request", False))
+    logging.info("has_diary_request(uid=%s) -> %s", uid, val)
+    return val
+
+
+def is_loop_stopped(uid: int) -> bool:
+    d = _read()
+    return bool(d.get("users", {}).get(str(uid), {}).get("loop_stopped", False))
+
+
+def set_loop_stopped(uid: int, stopped: bool):
+    d = _read()
+    u = d.setdefault("users", {}).setdefault(str(uid), {})
+    u["loop_stopped"] = bool(stopped)
+    _write(d)
+
+
+# ========= HELPER FUNCTIONS =========
+
+def smart_truncate(text: str, max_length: int = 700) -> tuple[str, str]:
+    """Truncate text intelligently to max_length, preferring sentence boundaries.
+    Returns (truncated_text, remainder)"""
+    if len(text) <= max_length:
+        return text, ""
+
+    # Look for sentence endings within the limit
+    sentence_endings = ['. ', '! ', '? ']
+    best_pos = -1
+    for ending in sentence_endings:
+        pos = text.rfind(ending, 0, max_length)
+        if pos > best_pos:
+            best_pos = pos + len(ending)  # Include the space
+
+    if best_pos > 0:
+        truncated = text[:best_pos].rstrip()
+        remainder = text[best_pos:].lstrip()
+        return truncated, remainder
+
+    # If no sentence ending, try word boundary
+    pos = text.rfind(' ', 0, max_length)
+    if pos > 0:
+        truncated = text[:pos]
+        remainder = text[pos:].lstrip()
+        return truncated, remainder
+
+    # Last resort: hard truncate
+    truncated = text[:max_length-3] + "..."
+    remainder = text[max_length-3:]
+    return truncated, remainder
+
+async def send_block(chat_id: int, banner_url: str, text: str,
+                      reply_markup=None, parse_mode=ParseMode.MARKDOWN):
+    try:
+        if banner_url:
+            # Check if it's a local file path (not a URL)
+            if not banner_url.startswith(('http://', 'https://')):
+                # It's a local file, use FSInputFile
+                try:
+                    photo = FSInputFile(banner_url)
+                    await bot.send_photo(chat_id, photo, caption=text, reply_markup=reply_markup, parse_mode=parse_mode)
+                    return
+                except Exception as e:
+                    logging.warning("Failed to send local image %s: %s, falling back to text message", banner_url, e)
+                    await bot.send_message(chat_id, text, reply_markup=reply_markup, parse_mode=parse_mode)
+                    return
+
+            # It's a URL, send as before
+            await bot.send_photo(chat_id, banner_url, caption=text, reply_markup=reply_markup, parse_mode=parse_mode)
+        else:
+            await bot.send_message(chat_id, text, reply_markup=reply_markup, parse_mode=parse_mode)
+    except TelegramBadRequest as e:
+        if "wrong type of the web page content" in str(e) or "failed to get HTTP URL content" in str(e):
+            logging.warning("Banner URL '%s' rejected by Telegram. Trying to extract direct image URL from Imgur album for chat %s...", banner_url, chat_id)
+            # Try to convert Imgur album URL to direct image URL
+            if "imgur.com/a/" in banner_url:
+                # Extract album ID and try common image extensions
+                album_id = banner_url.split("/a/")[-1].split("?")[0].split("#")[0]
+                direct_url = f"https://i.imgur.com/{album_id}.jpg"
+                try:
+                    await bot.send_photo(chat_id, direct_url, caption=text, reply_markup=reply_markup, parse_mode=parse_mode)
+                    logging.info("Successfully sent direct image URL %s for chat %s", direct_url, chat_id)
+                    return
+                except Exception:
+                    pass
+            logging.warning("Could not extract direct image URL, falling back to text message for chat %s", chat_id)
+            await bot.send_message(chat_id, text, reply_markup=reply_markup, parse_mode=parse_mode)
+        else:
+            logging.exception("TelegramBadRequest in send_block for chat %s: %s", chat_id, e)
+    except TelegramForbiddenError:
+        logging.warning("TelegramForbiddenError in send_block for chat %s. User may have blocked the bot.", chat_id)
+    except Exception:
+        logging.exception("Unexpected error in send_block for chat %s", chat_id)
+
+
+async def send_url_only(chat_id: int, url: str, reply_markup=None):
+    """Отправить только ссылку (без текста)"""
+    try:
+        await bot.send_message(chat_id, url, reply_markup=reply_markup, disable_web_page_preview=False)
+    except Exception:
+        await bot.send_message(chat_id, url, reply_markup=reply_markup)
+
+async def is_subscribed_telegram(user_id: int) -> bool:
+    """True, если дневник = Telegram-канал и юзер там участник"""
+    if not DIARY_TG_CHAT_ID:
+        return False
     
-    <div class="card">
-      <span class="card-icon">💡</span>
-      <h3 class="card-title" data-ru="Стартапы" data-en="Startups">Стартапы</h3>
-      <p class="card-description" data-ru="Первые пользователи и growth marketing" data-en="First users and growth marketing">Первые пользователи и growth marketing</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">🎯</span>
-      <h3 class="card-title" data-ru="Эксперты/Блоггеры" data-en="Experts/Bloggers">Эксперты/Блоггеры</h3>
-      <p class="card-description" data-ru="Запуск под ключ" data-en="Turnkey launch">Запуск под ключ</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">🎓</span>
-      <h3 class="card-title" data-ru="Университеты" data-en="Universities">Университеты</h3>
-      <p class="card-description" data-ru="Digital-переход и глобальные студенты" data-en="Digital transition and global students">Digital-переход и глобальные студенты</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">🏢</span>
-      <h3 class="card-title" data-ru="Корпорации" data-en="Corporations">Корпорации</h3>
-      <p class="card-description" data-ru="Корпоративное обучение и развитие персонала" data-en="Corporate training and staff development">Корпоративное обучение и развитие персонала</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">🚀</span>
-      <h3 class="card-title" data-ru="EdTech платформы" data-en="EdTech Platforms">EdTech платформы</h3>
-      <p class="card-description" data-ru="Масштабирование образовательных платформ" data-en="Scaling educational platforms">Масштабирование образовательных платформ</p>
-    </div>
-  </div>
-  
-  <div style="text-align: center;">
-    <button 
-      data-cal-link="cal_live_0b821391b525deeabb6b077c2a8578ca"
-      data-cal-config='{"layout":"month_view","theme":"light"}'
-      class="btn btn-primary cal-booking-btn">
-      <span data-ru="Хочу так же" data-en="I Want This Too">Хочу так же</span>
-    </button>
-  </div>
-</section>
+    try:
+        member = await bot.get_chat_member(DIARY_TG_CHAT_ID, user_id)
+        return member.status in {
+            ChatMemberStatus.MEMBER,
+            ChatMemberStatus.ADMINISTRATOR,
+            ChatMemberStatus.CREATOR,
+        }
+    except Exception:
+        return False
 
-<section id="services" class="animate-on-scroll">
-  <h2 class="section-title" data-ru="Что мы делаем для EdTech?" data-en="What We Do for EdTech?">Что мы делаем для EdTech?</h2>
-  <p class="section-subtitle" data-ru="Мы закрываем полный цикл роста EdTech-проекта" data-en="We cover the full growth cycle of EdTech projects">Мы закрываем полный цикл роста EdTech-проекта</p>
-  
-  <div class="cards">
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">🎯</span>
-      <h3 class="card-title" data-ru="Маркетинговая стратегия" data-en="Marketing Strategy">Маркетинговая стратегия</h3>
-      <p class="card-description" data-ru="От позиционирования до упаковки" data-en="From positioning to packaging">От позиционирования до упаковки</p>
-      <div class="card-expanded">
-        <p data-ru="Разрабатываем комплексную маркетинговую стратегию, включающую анализ рынка, конкурентов, целевой аудитории и позиционирование бренда." 
-           data-en="We develop comprehensive marketing strategy including market analysis, competitors, target audience and brand positioning.">
-          Разрабатываем комплексную маркетинговую стратегию, включающую анализ рынка, конкурентов, целевой аудитории и позиционирование бренда.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">🚀</span>
-      <h3 class="card-title" data-ru="Запуск и ведение рекламы" data-en="Advertising Launch & Management">Запуск и ведение рекламы</h3>
-      <p class="card-description" data-ru="Meta, Google Ads" data-en="Meta, Google Ads">Meta, Google Ads</p>
-      <div class="card-expanded">
-        <p data-ru="Настройка и оптимизация рекламных кампаний в Facebook, Instagram, Google Ads с фокусом на конверсии и ROI." 
-           data-en="Setup and optimization of advertising campaigns on Facebook, Instagram, Google Ads focused on conversions and ROI.">
-          Настройка и оптимизация рекламных кампаний в Facebook, Instagram, Google Ads с фокусом на конверсии и ROI.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">🔄</span>
-      <h3 class="card-title" data-ru="Воронки и CRM" data-en="Funnels & CRM">Воронки и CRM</h3>
-      <p class="card-description" data-ru="От лида до повторной продажи" data-en="From lead to repeat sale">От лида до повторной продажи</p>
-      <div class="card-expanded">
-        <p data-ru="Построение эффективных воронок продаж и настройка CRM-систем для максимизации конверсии и удержания клиентов." 
-           data-en="Building effective sales funnels and CRM systems setup to maximize conversion and customer retention.">
-          Построение эффективных воронок продаж и настройка CRM-систем для максимизации конверсии и удержания клиентов.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">📝</span>
-      <h3 class="card-title" data-ru="Контент-маркетинг" data-en="Content Marketing">Контент-маркетинг</h3>
-      <p class="card-description" data-ru="Блогеры, соцсети" data-en="Bloggers, social media">Блогеры, соцсети</p>
-      <div class="card-expanded">
-        <p data-ru="Создание контент-стратегии, работа с блогерами и инфлюенсерами, ведение социальных сетей." 
-           data-en="Content strategy creation, working with bloggers and influencers, social media management.">
-          Создание контент-стратегии, работа с блогерами и инфлюенсерами, ведение социальных сетей.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">⚡</span>
-      <h3 class="card-title" data-ru="Автоматизация и удержание" data-en="Automation & Retention">Автоматизация и удержание</h3>
-      <p class="card-description" data-ru="Мессенджеры, чат-боты" data-en="Messengers, chatbots">Мессенджеры, чат-боты</p>
-      <div class="card-expanded">
-        <p data-ru="Настройка автоматизированных систем коммуникации, чат-ботов и email-маркетинга для удержания клиентов." 
-           data-en="Setup of automated communication systems, chatbots and email marketing for customer retention.">
-          Настройка автоматизированных систем коммуникации, чат-ботов и email-маркетинга для удержания клиентов.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+def _looks_like_videonote(fid: str | None) -> bool:
+    if not fid:
+        return False
+    # несколько известных префиксов, плюс проверка длины — простая эвристика
+    return fid.startswith(("DQAC", "AQAD", "BAAD", "CAAD")) or len(fid) > 40
 
-<section id="cases" class="animate-on-scroll">
-  <h2 class="section-title" data-ru="Результаты" data-en="Results">Результаты</h2>
-  <p class="section-subtitle" data-ru="Кейсы наших клиентов" data-en="Our client cases">Кейсы наших клиентов</p>
-  
-  <div class="cards">
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">🧠</span>
-      <h3 class="card-title">Vadym.ai</h3>
-      <p class="card-description" data-ru="Курс по ИИ Автоматизации для бизнеса - 5500 лидов за месяц!" data-en="AI Automation Course for Business - 5500 leads per month!">Курс по ИИ Автоматизации для бизнеса - 5500 лидов за месяц!</p>
-      <div class="card-expanded">
-        <p data-ru="Запустили комплексную кампанию по продвижению курса ИИ автоматизации. Результат: 5500+ лидов, конверсия в продажи 12%, ROI 340%." 
-           data-en="Launched comprehensive campaign for AI automation course. Result: 5500+ leads, 12% sales conversion, ROI 340%.">
-          Запустили комплексную кампанию по продвижению курса ИИ автоматизации. Результат: 5500+ лидов, конверсия в продажи 12%, ROI 340%.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">🌟</span>
-      <h3 class="card-title">YesCenter</h3>
-      <p class="card-description" data-ru="Поступление в университеты заграницу - 850+ успешных заявок!" data-en="University admission abroad - 850+ successful applications!">Поступление в университеты заграницу - 850+ успешных заявок!</p>
-      <div class="card-expanded">
-        <p data-ru="Помогли образовательному центру масштабировать услуги поступления в зарубежные университеты. Результат: 850+ успешных заявок, увеличение выручки на 280%." 
-           data-en="Helped educational center scale university admission services abroad. Result: 850+ successful applications, 280% revenue increase.">
-          Помогли образовательному центру масштабировать услуги поступления в зарубежные университеты. Результат: 850+ успешных заявок, увеличение выручки на 280%.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">💎</span>
-      <h3 class="card-title">Web3 & Crypto 2025</h3>
-      <p class="card-description" data-ru="Запуск под ключ - от 0 до 10,000 студентов" data-en="Turnkey launch - from 0 to 10,000 students">Запуск под ключ - от 0 до 10,000 студентов</p>
-      <div class="card-expanded">
-        <p data-ru="Полный запуск образовательной платформы по Web3 и криптовалютам. За 6 месяцев привлекли 10,000+ студентов, выручка $2.5M." 
-           data-en="Full launch of Web3 and cryptocurrency educational platform. In 6 months attracted 10,000+ students, revenue $2.5M.">
-          Полный запуск образовательной платформы по Web3 и криптовалютам. За 6 месяцев привлекли 10,000+ студентов, выручка $2.5M.
-        </p>
-      </div>
-    </div>
-    
-    <div class="card expandable-card">
-      <span class="expand-indicator">+</span>
-      <span class="card-icon">🏆</span>
-      <h3 class="card-title" data-ru="Языковая школа Premium" data-en="Premium Language School">Языковая школа Premium</h3>
-      <p class="card-description" data-ru="Заполнение групп и удержание студентов - 95% заполненность" data-en="Group filling and student retention - 95% occupancy">Заполнение групп и удержание студентов - 95% заполненность</p>
-      <div class="card-expanded">
-        <p data-ru="Построили систему привлечения и удержания студентов для языковой школы. Результат: 95% заполненность групп, снижение оттока на 60%." 
-           data-en="Built student attraction and retention system for language school. Result: 95% group occupancy, 60% churn reduction.">
-          Построили систему привлечения и удержания студентов для языковой школы. Результат: 95% заполненность групп, снижение оттока на 60%.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+async def _send_l3_video_later(chat_id: int, delay: int | None = None):
+    if not L3_FOLLOWUP_FILE:
+        return
+    await asyncio.sleep(delay if delay is not None else L3_FOLLOWUP_DELAY)
+    await _send_file_with_fallback(chat_id, L3_FOLLOWUP_FILE, L3_FOLLOWUP_CAPTION or None)
 
-<section id="about" class="animate-on-scroll">
-  <h2 class="section-title" data-ru="Почему мы?" data-en="Why Us?">Почему мы?</h2>
-  <p class="section-subtitle" data-ru="Отстройка от конкурентов" data-en="Differentiation from competitors">Отстройка от конкурентов</p>
-  
-  <div class="cards">
-    <div class="card">
-      <span class="card-icon">🎯</span>
-      <h3 class="card-title" data-ru="Узкая специализация на EdTech" data-en="Narrow specialization in EdTech">Узкая специализация на EdTech</h3>
-      <p class="card-description" data-ru="Глубокое понимание образовательной индустрии и её особенностей" data-en="Deep understanding of educational industry and its specifics">Глубокое понимание образовательной индустрии и её особенностей</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">🌍</span>
-      <h3 class="card-title" data-ru="Опыт выхода на международные рынки" data-en="International market expansion experience">Опыт выхода на международные рынки</h3>
-      <p class="card-description" data-ru="Успешно масштабируем проекты в разных странах и культурах" data-en="Successfully scale projects across different countries and cultures">Успешно масштабируем проекты в разных странах и культурах</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">📈</span>
-      <h3 class="card-title" data-ru="Работаем под KPI" data-en="KPI-driven approach">Работаем под KPI</h3>
-      <p class="card-description" data-ru="Лиды, пользователи, студенты - измеряем каждый результат" data-en="Leads, users, students - we measure every result">Лиды, пользователи, студенты - измеряем каждый результат</p>
-    </div>
-    
-    <div class="card">
-      <span class="card-icon">🤝</span>
-      <h3 class="card-title" data-ru="Создаём систему и команду" data-en="Build systems and teams">Создаём систему и команду</h3>
-      <p class="card-description" data-ru="Не разовые кампании, а долгосрочное партнёрство" data-en="Not one-time campaigns, but long-term partnership">Не разовые кампании, а долгосрочное партнёрство</p>
-    </div>
-  </div>
-  
-  <div style="text-align: center; margin-top: 40px;">
-    <button 
-      data-cal-link="cal_live_0b821391b525deeabb6b077c2a8578ca"
-      data-cal-config='{"layout":"month_view","theme":"light"}'
-      class="btn btn-primary cal-booking-btn">
-      <span data-ru="Связаться с нами" data-en="Contact Us">Связаться с нами</span>
-    </button>
-  </div>
-</section>
+async def auto_send_next_lesson(user_id: int, current_lesson: int):
+    """Автоматически отправляет следующий урок после небольшой паузы."""
+    delay = 0
+    if current_lesson == 1:
+        delay = NEXT_AFTER_1
+    elif current_lesson == 2:
+        delay = NEXT_AFTER_2
 
-<section class="animate-on-scroll">
-  <h2 class="section-title" data-ru="Как мы работаем" data-en="How We Work">Как мы работаем</h2>
-  <p class="section-subtitle" data-ru="Пошаговый процесс от идеи до результата" data-en="Step-by-step process from idea to result">Пошаговый процесс от идеи до результата</p>
-  
-  <div class="process-flow">
-    <div class="process-step">
-      <div class="process-number">A</div>
-      <h3 class="process-title" data-ru="Бриф и аудит" data-en="Brief & Audit">Бриф и аудит</h3>
-      <p class="process-description" data-ru="Обсуждаем проект, анализируем текущую ситуацию" data-en="Discuss project, analyze current situation">Обсуждаем проект, анализируем текущую ситуацию</p>
-      <div class="process-arrow">→</div>
-    </div>
+    if delay > 0:
+        await asyncio.sleep(delay)
+
+    try:
+        # Failsafe: if user has already advanced, don't send a delayed message for a past lesson
+        if get_stage(user_id) > current_lesson:
+            logging.info(f"auto_send_next_lesson: User {user_id} is already at stage {get_stage(user_id)}, skipping message for lesson {current_lesson + 1}.")
+            return
+
+        if current_lesson == 1:
+            # После урока 1 -> отправляем блок и доступ к уроку 2
+            await send_block(user_id, BANNER_AFTER3, AFTER_L1, reply_markup=kb_open(2), parse_mode=ParseMode.HTML)
+        elif current_lesson == 2:
+            # После урока 2 -> отправляем блок перед уроком 3
+            await send_block(user_id, BANNER_AFTER5, AFTER_L2, reply_markup=kb_open(3), parse_mode=ParseMode.HTML)
+
+    except Exception as e:
+        logging.warning("auto_send_next_lesson failed: %s", e)
+
+
+
+async def delete_message_after_delay(chat_id: int, message_id: int, delay: int):
+    await asyncio.sleep(delay)
+    try:
+        await bot.delete_message(chat_id, message_id)
+    except Exception as e:
+        logging.warning(f"Failed to delete message {message_id} in chat {chat_id}: {e}")
+
+# ========= KEYBOARD FUNCTIONS =========
+def kb_access() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardBuilder()
+    kb.row(InlineKeyboardButton(text="🔑 ПОЛУЧИТЬ ДОСТУП", callback_data="open:1"))
+    return kb.as_markup()
+
+def kb_access_reply() -> ReplyKeyboardMarkup:
+    kb = ReplyKeyboardBuilder()
+    kb.add(KeyboardButton(text="🔑 ПОЛУЧИТЬ ДОСТУП"))
+    kb.adjust(1)
+    return kb.as_markup(resize_keyboard=True)
+
+def kb_open(n: int) -> InlineKeyboardMarkup:
+    labels = {1: "ОТКРЫТЬ УРОК 1", 2: "ОТКРЫТЬ УРОК 2", 3: "ОТКРЫТЬ УРОК 3"}
+    kb = InlineKeyboardBuilder()
+    kb.row(InlineKeyboardButton(text=labels[n], callback_data=f"open:{n}"))
+    return kb.as_markup()
+
+# Функция kb_done убрана - теперь автоматическая отправка через 30 минут
+
+def kb_subscribe_then_l3() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardBuilder()
+    if DIARY_TG_JOIN_URL:
+        kb.row(InlineKeyboardButton(text="📓 Подписаться на дневник", url=DIARY_TG_JOIN_URL))
+    else:
+        kb.row(InlineKeyboardButton(text="📓 Подписаться на дневник", url=DIARY_URL))
+    kb.row(InlineKeyboardButton(text="✅ Отправил запрос — ПРОВЕРИТЬ", callback_data="check_diary"))
+    return kb.as_markup()
+
+def kb_buy_course() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardBuilder()
+    kb.row(InlineKeyboardButton(text="🔥 Взять мини-курс (999 грн)", callback_data="buy_course"))
+    return kb.as_markup()
+
+
+def kb_apply_form() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardBuilder()
+    kb.row(InlineKeyboardButton(text="📝 Оставить заявку", url=FORM_URL))
+    return kb.as_markup()
+
+def kb_deeplink() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardBuilder()
+    kb.row(InlineKeyboardButton(text="🎁 ПОЛУЧИТЬ УРОКИ", url=DEEP_LINK))
+    return kb.as_markup()
+
+# ========= TEXTS =========
+WELCOME_LONG = (
+    "Привет✌️\n\n"
+    "У меня для тебя *подарок* — сразу *3 бесплатных урока по P2P* 🤝\n\n"
+    "Я *Стас Грибовский*, эксперт в сфере Р2Р уже более 3 лет!\n"
+    "Тут тебя ждет *интенсив по Р2Р арбитражу* 🚀\n\n"
+    "Наша цель — понять *основу Р2Р* и выйти на *свой первый доход* в этой сфере!\n"
+    "Я собрал для тебя *практику и реальные кейсы*: шаг за шагом покажу, как работает P2P и доведу тебя до *первого результата*!\n\n"
+    "👉 В последнем уроке тебя ждет *связка*, применив которую ты выйдешь на свой *первый доход в Р2Р*.\n\n"
+    "Поэтому, выдели время, налей чашечку чая, устройся поудобнее и *начинаем*!\n\n"
+    "✅ *В интенсиве тебя ждут 3 бесплатных урока:*\n"
+    "1️⃣ *Что такое P2P в 2025 году* и почему это возможность, которую нельзя пропустить.\n"
+    "2️⃣ *Как я заработал $50 000 и новый Mercedes* за 3 месяца\n"
+    "3️⃣ *Связка на Р2Р: 60$ за два часа*"
+)
+LESSON1_INTRO = (
+    "Сейчас перед тобой будет первый урок по P2P-арбитражу, <b>который я подготовил именно для тебя.</b>\n\n"
+    "В нём ты узнаешь:\n"
+    "• что такое P2P и как это работает;\n"
+    "• как P2P существовало ещё тысячи лет назад и почему это вечная профессия;\n"
+    "• что нужно, чтобы начать зарабатывать на P2P.\n\n"
+    "А ещё я подготовил для тебя крутой бонус 🎁 — ты получишь его после просмотра всех трёх уроков.\n"
+    "<blockquote>Поэтому не откладывай на потом и приступай к просмотру прямо сейчас!</blockquote>\n\n"
+    "Готов начинать?"
+)
+AFTER_L1 = (
+    "<b>Ты большой молодец, что посмотрел первый урок!</b> 🙌\n\n"
+    "<i>Я вложил в него много усилий и надеюсь, что он был для тебя полезен.</i>\n\n"
+    "Буду рад, если ты напишешь мне отзыв в <a href=\"https://www.instagram.com/grybovsky?igsh=MTNnZnN3NGs3bm5lNw==\">Instagram</a> и поделишься своими впечатлениями после просмотра.\n\n"
+    "А теперь не будем тянуть — держи доступ ко второму уроку 🚀\n"
+    "Напоминаю: в третьем уроке я раскрою схему, которую ты сможешь внедрить в свою работу и зарабатывать от 800$ в месяц!\n\n"
+    "Нажимай на кнопку ниже и приступай к просмотру 👀"
+)
+
+AFTER_L2 = (
+    "Большая часть нашего интенсива уже позади 🔥\n\n"
+    "<i>Сейчас тебя ждёт третий, заключительный урок, в котором я покажу схему, на которой на твоих глазах</i> "
+    "<i>сделаю +2% к начальному депозиту всего за несколько минут. И да — позже ты сможешь просто повторять за мной те же самые шаги!</i>\n\n"
+    "Не откладывай на потом — изучи эту связку прямо сейчас. <b>Жми на кнопку ниже и получай доступ</b> 👇"
+)
+GATE_BEFORE_L3 = (
+    "Так же, по секрету, хочу с тобой поделиться: <b>я веду дневник, в котором пишу пост каждый вечер</b>. \n"
+    "Там я делюсь <b>полезными инсайтами, бизнес-советами, своими мыслями и даю ценные рекомендации</b>.\n\n"
+    "Некоторое время назад я поставил себе цель — <b>купить новый Mercedes AMG с нуля всего за 180 дней</b> 🔥\n"
+    "<blockquote>Я не знаю, получится ли у меня, но ты можешь стать частью этого.</blockquote>\n\n"
+    "Также ты можешь легко заработать: <b>если заметишь, что я не выложил пост в какой-то из дней - напиши мне об этом лично, и я скину тебе 50$</b>.\n\n"
+    "<i>Чтобы получить <b>третий урок</b>, в котором я раскрою все секреты связки, на которой заработал и продолжаю зарабатывать до сих пор, <b>подпишись на мой дневник</b></i> 👇"
+)
+
+
+BLOCK_6 = (
+    "<b>Хочешь освоить P2P и начать зарабатывать от $100 в день?</b>\n\n"
+    "<i>Я представляю тебе мини-курс, в котором:</i>\n"
+    "<i>— 5 уроков по 30 минут</i>\n"
+    "<i>— рабочая связка которая приносит от 100$ ежедневно. Твоя задача повторять ее за мной и внедрить в свою жизнь</i> \n"
+    "<i>— пошаговые инструкции и готовые шаблоны</i>\n"
+    "<i>— бонус — промокод на $100 для следующих потоков</i>\n\n"
+    "Кол-во мест ограничено⛔️\n\n"
+    "Цена 999 грн"
+)
+
+BLOCK_7 = (
+    "Как ты уже понял, <b>у меня есть личное обучение по P2P</b>, которое прошли сотни людей. "
+    "Уникальность программы в том, что все кураторы — это бывшие ученики, а <b>студенты выходят на доход от 1500$ уже в первый месяц после старта.</b> \n\n"
+    "<b>Что делает обучение особенным:</b>\n"
+    "• Работа в самой безопасной нише в крипте, где ученики зарабатывают до 10% в день.\n"
+    "• Более 3 лет моего опыта в сфере, которым я делюсь через самые актуальные знания.\n"
+    "• Десятки разных схем и связок по арбитражу: P2P, фандинг, межбиржевой, spot/futures, CEX/DEX. Каждый найдёт то, что подойдёт именно ему.\n"
+    "• Уникальное комьюнити, где есть как специалисты из разных областей, так и владельцы крупных компаний.\n\n"
+    "<blockquote>И это только часть того, что ждёт внутри — многое остаётся под завесой 😉</blockquote>\n\n"
+    "Чтобы попасть в следующий поток, заполняй гугл-форму ниже или связывайся со мной @hrybovsky"
+)
+COURSE_POSTS = [
+    # Пост 1
+    """Многие новички которые только заходят в сферу Р2Р думают, что нужно обладать каким-то особым навыком или везением. На самом деле — нет. Всё, что требуется — это желание разобраться и готовность действовать.
+
+У многих есть страхи. Страхи что не выйдет, что не получится, что обманут и т.д. И бороться с этими всеми страхами можно только лишь с подходом к Р2Р с правильной стороны и с хорошим наставником.
+
+Именно поэтому я создал свой курс: чтобы дать людям не пустые обещания, а пошаговую систему, которая работает у меня и у моих учеников.
+
+На фото выше — отзывы тех, кто пришёл ко мне на обучение. Кто-то делал первые 30-50$ в день. Кто-то закрывал неделю с профитом в $300–400. А те, кто давно начинали уже имеют свои команды и доходы в стабильных несколько тысяч $ каждый месяц.
+
+Вся суть Р2Р это начать с малого, просто чтобы понять и попробовать. А со временем у тебя в руках оказывается инструмент финансовой свободы.
+
+Здесь нет потолка, нет ограничений — всё зависит только от того, сколько ты готов вкладывать усилий.
+
+И да, именно поэтому я считаю P2P профессией будущего. Люди всегда будут обменивать: вчера это было золото на серебро, сегодня крипта на фиат, завтра — ещё что-то новое.
+
+Но суть одна: спрос есть и будет всегда.
+
+А теперь вопрос к тебе: ты с нами или будешь дальше наблюдать за результатами других и потом жалеть, что не зашёл вовремя?""",
+
+    # Пост 2
+    """Сейчас Р2Р для меня — это профессия и основной доход. Но когда я только заходил в эту сферу, я ошибочно считал это «темкой» на несколько месяцев.
+
+Реальность оказалась куда другой. Со временем я понял, что Р2Р — это далеко не темка, а прогнозируемый бизнес на дистанции, который даёт хорошие результаты.
+
+И результат не заставил себя ждать: через какое-то время работы я купил себе Mercedes.
+
+P2P дало мне свободу. И не ту лживую, как какие-то «темки» или профессии, а настоящую. Где нет начальника, привязанности к месту и потолка дохода.
+
+Благодаря Р2Р я могу не переживать о завтрашнем дне и, что не менее важно, провести его как в Польше, так и в Испании.
+
+Здесь я научился ценить эту свободу. Свободу выбора, а не обязанность работать на кого-то. Не ту, о которой любят красиво говорить, а настоящую — когда ты не зависишь от зарплаты в конце месяца, не смотришь на начальника, не переживаешь, что завтра тебя могут уволить.
+
+P2P дало мне уверенность, что у меня всегда будет доход. Потому что люди всегда будут обменивать деньги. Раньше это могли быть золотые и серебряные монеты, сейчас же — криптовалюта и деньги.
+
+И вот в этом для меня смысл: я нашёл своё дело, которое не привязано ни к стране, ни к работодателю. У меня есть ноутбук, телефон и рынок, который работает 24/7.
+
+Кто-то всю жизнь ищет «свою профессию». А я могу сказать честно: я её нашёл. Для меня P2P — это профессия будущего, которая уже сегодня даёт то, к чему многие идут годами: стабильный доход, свободу и независимость.""",
+
+    # Пост 3
+    """Я, конечно, удивлён, почему ты не хочешь получить БЕСПЛАТНО схему, на которой мои ученики зарабатывают в среднем 2500$ в месяц 🤔
+
+Ладно, как исключение, даю только тебе доступ к этому уроку, где я раскрыл всю схему.
+
+Забирай по кнопке ниже — урок скоро исчезнет, и ты можешь остаться без доступа 👇""",
+
+    # Пост 4
+    """Я понимаю, что ты очень занят и у тебя много дел, но поверь: после просмотра этого урока ты поймёшь основы P2P и откроешь для себя новую сферу заработка ⏳
+
+Забирай готовый урок по кнопке ниже (доступ ограничен) 👇""",
+
+    # Пост 5
+    """Хороший пример преимущества Р2Р над другими сферами — это полная независимость.
+
+Независимость от всего:
+
+• Время: Не хочешь или не можешь работать днём — работаешь ночью.
+
+• Место: Не хочешь работать из своего города или страны? Р2Р — это онлайн, работай там, где тебе удобно.
+
+• Люди: Не хочешь начальника? Его не будет. Хочешь команду? Собираешь и управляешь.
+
+• Умения: Боишься, что не разберёшься? Ко мне на обучение приходят люди, у которых нет даже минимального понятия не то что в Р2Р, а в крипте в целом. После месяца обучения их доход вырастает до 1000$+.
+
+На видео сверху хороший пример. Один из учеников решил сделать себе мини-отпуск и поехать на отдых за счёт Р2Р. Итог — за отдых он заработал больше, чем потратил.
+
+Р2Р — это инструмент, который в правильных руках даёт полную свободу и независимость. Вопрос, готов ли ты это взять?""",
+
+    # Пост 6
+    """А это пример одного из первых учеников, Богдана.
+
+Богдан до Р2Р работал на заводе в Польше и хотел жениться. По его словам, работа на заводе ему надоела, и он решил, что нужно что-то в жизни менять.
+
+Что сделал Богдан? Он пошёл на моё обучение по Р2Р. Несмотря на то, что он раньше не работал в Р2Р и ему было трудно поначалу, через два месяца Богдан вышел на 2500$+ ежемесячно.
+
+Хотя у него не было ни больших денег для оборота, ни знаний в Р2Р. У него было лишь желание — желание научиться и желание заработать денег.
+
+И он смог. Сейчас он может себе позволить и свадьбу на Мадейре, и хорошую жизнь без работы на кого-то.
+
+Если получилось у него — получится и у тебя.""",
+
+    # Пост 7
+    """Итак, почему же именно Р2Р, а не другие ниши? 👀
+
+1) Нам не нужно никуда вкладывать деньги и что-то покупать, как в товарном бизнесе. В Р2Р мы наши деньги никуда не деваем — они всегда у нас перед глазами.
+
+2) Р2Р — это бизнес онлайн. Нету привязки ко времени (многие работают в ночное время), к месту и к людям.
+
+3) В Р2Р нет потолка по заработку. Здесь можно масштабироваться и строить свои команды.
+
+4) Не нужно иметь много денег для старта. Достаточно начинать с 300$.
+
+5) Лёгкий старт для новичков. Здесь не нужно учиться годами (в отличие от фьючерсной торговли).
+
+6) Р2Р — сфера без рисков, в отличие от других направлений, связанных с криптовалютой.
+
+Самое важное, что нужно понять новичку: Р2Р — это не «темка», а полноценный бизнес, в который нужно вкладывать силы и время.
+
+Я могу дать тебе все необходимые знания, чтобы ты начал развиваться в этой сфере. Вопрос: готов ли ты их взять?""",
+
+    # Пост 8
+    """<b>Давай разберём, в чём уникальность этого мини-курса и почему его стоит приобрести</b>
+
+<b>Во-первых</b> — это цена, где ещё ты видел обучение по P2P дешевле 1000 грн
+<b>Во-вторых</b> — внутри 5 полноценных уроков по 30 минут каждый
+<b>В-третьих</b> — в одном из уроков показана в деталях рабочая связка, на которой я и мои ученики зарабатывают от 100$ ежедневно
+
+Также в курсе ты получишь:
+• пошаговый план, как выйти на стабильный доход уже в первый месяц
+• разбор частых ошибок новичков, чтобы ты их не допустил
+• готовые шаблоны и инструкции для быстрого старта
+
+Кроме того, я показал, как построить свою команду, масштабировать процессы и грамотно управлять ими
+
+Тебя ждёт активная неделя обучения, после которой твоя жизнь разделится на «до» и «после»
+Ты сможешь работать из дома и зарабатывать не меньше чем твой прошлый начальник)
+
+А ещё в курсе тебя ждёт подарок 🎁
+Не скажу, в каком уроке — будь внимателен 😉
+Мой подарок — это промокод на 100$ для участия в следующих потоках обучения
+<blockquote>Когда захочешь присоединиться, просто скажешь кодовое слово с урока и активируешь скидку. Таким образом ты выйдешь в плюс на 80$ (поскольку цена мини курса 20$, а скидка  100$)</blockquote>
+
+<i>Занято 63/100 мест</i>
+
+ А сейчас я даю тебе ссылку на мини-курс, который подготовил специально для тебя 👇"""
+    ]
+# New variables for course posts media
+COURSE_POST_PHOTOS = [
+    "https://files.fm/thumb_show.php?i=y2ptpj6c86",
+    "https://files.fm/thumb_show.php?i=y2zug7c57t",
+    "https://files.fm/thumb_show.php?i=3zvc6xdxb7",
+    "https://files.fm/thumb_show.php?i=tg3eeccayz",
+    "https://files.fm/thumb_show.php?i=xda488wd7v",
+    "https://files.fm/thumb_show.php?i=sv4yfg58r4",
+    "https://files.fm/thumb_show.php?i=ft96sdta7t",
+    "https://files.fm/thumb_show.php?i=mdvutpnw27",
+]
+
+COURSE_POST_VIDEOS = {
+    2: "videos/post_2.MOV",
+    5: "videos/post_5.MP4",
+    7: "videos/post_7.MOV"
+}
+
+COURSE_POST_MEDIA = {
+    1: [0, 1],  # first two photos
+    3: [2],     # third photo
+    4: [7],  # banner
+    6: [3, 4, 5],  # fourth, fifth, sixth photos
+    8: [6]      # seventh photo
+}
+
+# ========= ДОСТУП/НАПОМИНАНИЯ =========
+ACCESS_NUDGE_TEXTS = [
+    "Вижу, ты ещё не забрал доступ к урокам. Нажми ниже — начнём с первого 👇",
+    "Напомню про интенсив: 3 бесплатных урока ждут тебя. Забери доступ 👇",
+    "Давай не откладывать — забирай доступ и стартуем прямо сейчас 👇",
+]
+ # === Рассылка 8 постов по 1 каждые 5 часов ===
+def kb_course() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardBuilder()
+    kb.row(InlineKeyboardButton(text="🔥 Мини курс Р2Р", callback_data="buy_course"))
+    return kb.as_markup()
+
+
+
+async def _send_file_with_fallback(chat_id: int, file_path_or_id: str, caption: str | None = None, reply_markup=None):
+    """
+    Отправляет файл, используя локальный путь (если существует) или file_id.
+    """
+    if not file_path_or_id:
+        logging.warning("_send_file_with_fallback: empty file_path_or_id for chat %s", chat_id)
+        return "no_file_id"
+
+    # 1. Проверяем, является ли строка путем к СУЩЕСТВУЮЩЕМУ файлу
+    resolved_file_path = file_path_or_id
+    logging.info("DEBUG: file_path_or_id = %s", file_path_or_id)
+    # If it's a simple filename and not an absolute path, assume it's in the videos directory
+    if not Path(file_path_or_id).is_absolute() and not ("/" in file_path_or_id or "\\" in file_path_or_id):
+        potential_video_path = BASE_DIR / "videos" / file_path_or_id
+        logging.info("DEBUG: potential_video_path = %s", potential_video_path)
+        if potential_video_path.is_file():
+            resolved_file_path = str(potential_video_path)
+    elif not Path(file_path_or_id).is_absolute() and (BASE_DIR / file_path_or_id).is_file():
+        resolved_file_path = str(BASE_DIR / file_path_or_id)
+    logging.info("DEBUG: resolved_file_path = %s", resolved_file_path)
+
+    if Path(resolved_file_path).is_file():
+        try:
+            video = FSInputFile(resolved_file_path)
+            await bot.send_video(chat_id, video, caption=caption, reply_markup=reply_markup)
+            logging.info("Sent local video file %s to chat %s", resolved_file_path, chat_id)
+            return "local_video"
+        except TelegramEntityTooLarge as e:
+            logging.warning("Local video file %s to chat %s is too large for direct video send. Attempting to send as document. Error: %s", resolved_file_path, chat_id, e)
+            try:
+                document = FSInputFile(resolved_file_path)
+                await bot.send_document(chat_id, document, caption=caption, reply_markup=reply_markup)
+                logging.info("Sent local video file %s as document to chat %s", resolved_file_path, chat_id)
+                return "local_document"
+            except Exception as doc_e:
+                logging.exception("Failed to send local video file %s as document to chat %s: %s", resolved_file_path, chat_id, doc_e)
+                return "failed_local_document"
+            except TelegramForbiddenError:
+                logging.warning("TelegramForbiddenError when sending local video file %s to chat %s. User may have blocked the bot.", resolved_file_path, chat_id)
+                return "forbidden_local_video"
+            except Exception as e:
+                logging.exception("Failed to send local video file %s as document to chat %s: %s", resolved_file_path, chat_id, e)
+                return "failed_local_document"
+        except TelegramForbiddenError:
+            logging.warning("TelegramForbiddenError when sending local video file %s to chat %s. User may have blocked the bot.", resolved_file_path, chat_id)
+            return "forbidden_local_video"
+        except Exception as e:
+            logging.exception("Failed to send local video file %s to chat %s: %s", resolved_file_path, chat_id, e)
+            return "failed_local_video"
+    # 2. Если файл по такому пути не найден, проверяем, похожа ли строка на путь.
+    # Если да, то это ошибка конфигурации, и не нужно пытаться отправить ее как file_id.
+    is_path_like = "/" in resolved_file_path or "\\" in resolved_file_path
+    if is_path_like:
+        logging.error("File not found at path: '%s'. Cannot send to chat %s.", resolved_file_path, chat_id)
+        return "file_not_found"
+
+    # 3. Если это не путь к файлу, считаем, что это file_id и пытаемся отправить.
+    file_id = file_path_or_id
+    logging.info("DEBUG: Attempting to send as file_id: %s", file_id)
+    try:
+        # Попытка №1: отправить как video_note, если похоже
+        if _looks_like_videonote(file_id):
+            try:
+                await bot.send_video_note(chat_id, file_id)
+                logging.info("Sent as video_note (file_id) to chat %s", chat_id)
+                if caption or reply_markup:
+                    await bot.send_message(chat_id, caption or " ", reply_markup=reply_markup)
+                return "video_note"
+            except TelegramBadRequest:
+                logging.warning("Failed to send %s as video_note, trying as video.", file_id)
+            except TelegramForbiddenError:
+                logging.warning("TelegramForbiddenError when sending %s as video_note to chat %s. User may have blocked the bot.", file_id, chat_id)
+                return "forbidden_video_note"
+
+        # Попытка №2: отправить как обычное видео
+        await bot.send_video(chat_id, file_id, caption=caption, reply_markup=reply_markup)
+        logging.info("Sent as video (file_id) to chat %s", chat_id)
+        return "video"
+
+    except TelegramForbiddenError:
+        logging.warning("TelegramForbiddenError when sending file_id %s as video to chat %s. User may have blocked the bot.", file_id, chat_id)
+        return "forbidden_video"
+    except TelegramBadRequest as e:
+        # Ловим конкретную ошибку, чтобы не отправлять пользователю неверный ID
+        if "wrong file identifier" in str(e) or "wrong HTTP URL specified" in str(e):
+            logging.error("Invalid file_id or URL: '%s' for chat %s. Error: %s", file_id, chat_id, e)
+            return "invalid_file_id"
+        else:
+            logging.exception("Telegram API error sending file_id %s to chat %s: %s", file_id, chat_id, e)
+            return "failed_telegram_error"
+    except Exception as e:
+        logging.exception("Unexpected error sending file_id %s to chat %s: %s", file_id, chat_id, e)
+        return "failed_unexpected"
+
+async def send_course_posts(chat_id: int):
+    """Send 8 course posts randomly every 10 seconds, starting after 10 seconds if user does nothing. Loops endlessly."""
+    if chat_id in SENDING_POSTS:
+        return
+    SENDING_POSTS.add(chat_id)
+
+    try:
+        await asyncio.sleep(10)  # Wait 10 seconds before starting
+        while True:
+            sent_posts = set()
+            # Shuffle the posts randomly with a seed based on user_id to ensure different sequences per user
+            random.seed(chat_id)
+            shuffled_posts = COURSE_POSTS.copy()
+            random.shuffle(shuffled_posts)
+            # Reset seed to avoid affecting other random operations
+            random.seed()
+
+            for i, text in enumerate(shuffled_posts):
+                if i > 0:
+                    await asyncio.sleep(10)  # 10 seconds between posts
+                try:
+                    # Skip if this post was already sent (shouldn't happen with proper shuffle, but safety check)
+                    if text in sent_posts:
+                        continue
+                    sent_posts.add(text)
+                    # Check if this post has media
+                    post_index = COURSE_POSTS.index(text) + 1  # 1-based index
+
+                    # Determine if kb_course should be sent with this post
+                    reply_markup = kb_course() if post_index == 8 else None
+
+                    # Handle different media combinations
+                    if post_index in COURSE_POST_MEDIA and post_index in COURSE_POST_VIDEOS:
+                        # Both photos and video - send photos as media group without caption, then video with caption (smart truncated)
+                        media_group = []
+                        for photo_index in COURSE_POST_MEDIA[post_index]:
+                            media_group.append(InputMediaPhoto(media=COURSE_POST_PHOTOS[photo_index]))
+                        if media_group:
+                            await bot.send_media_group(chat_id, media_group)
+                        # Send video with caption (smart truncated)
+                        video_file = COURSE_POST_VIDEOS[post_index]
+                        caption, remainder = smart_truncate(text)
+                        await _send_file_with_fallback(chat_id, video_file, caption, reply_markup=reply_markup)
+                        if remainder:
+                            await bot.send_message(chat_id, remainder, parse_mode=ParseMode.HTML)
+
+                    elif post_index in COURSE_POST_MEDIA:
+                        # Only photos
+                        photo_indices = COURSE_POST_MEDIA[post_index]
+                        if len(photo_indices) == 1:
+                            # Single photo - send with caption (supports HTML)
+                            await bot.send_photo(chat_id, COURSE_POST_PHOTOS[photo_indices[0]], caption=text, reply_markup=reply_markup, parse_mode=ParseMode.HTML)
+                        else:
+                            # Multiple photos - send media group without caption, then text separately
+                            media_group = []
+                            for photo_index in photo_indices:
+                                media_group.append(InputMediaPhoto(media=COURSE_POST_PHOTOS[photo_index]))
+                            if media_group:
+                                await bot.send_media_group(chat_id, media_group)
+                            # Send full text as separate message with parse_mode
+                            await bot.send_message(chat_id, text, reply_markup=reply_markup, parse_mode=ParseMode.HTML)
+
+                    elif post_index in COURSE_POST_VIDEOS:
+                        # Only video - send video with caption (smart truncated)
+                        video_file = COURSE_POST_VIDEOS[post_index]
+                        caption, remainder = smart_truncate(text)
+                        await _send_file_with_fallback(chat_id, video_file, caption, reply_markup=reply_markup)
+                        if remainder:
+                            await bot.send_message(chat_id, remainder, parse_mode=ParseMode.HTML)
+
+                    else:
+                        # Only text
+                        await bot.send_message(chat_id, text, reply_markup=reply_markup, parse_mode=ParseMode.HTML)
+                except TelegramForbiddenError:
+                    break
+                except Exception as e:
+                    logging.warning("Failed to send course post %d to %s: %s", i+1, chat_id, e)
+            # After one cycle, continue the loop endlessly
+    finally:
+        SENDING_POSTS.discard(chat_id)
+
+async def access_nurture(user_id: int):
+    """Спам до нажатия «ПОЛУЧИТЬ ДОСТУП». Запускать после /start."""
+    for i, delay in enumerate(ACCESS_REM_DELAYS):
+        await asyncio.sleep(delay)
+        if get_stage(user_id) >= 1:
+            break
+        txt = ACCESS_NUDGE_TEXTS[min(i, len(ACCESS_NUDGE_TEXTS) - 1)]
+        try:
+            await bot.send_message(user_id, txt, reply_markup=kb_access())
+        except TelegramForbiddenError:
+            break
+        except Exception as e:
+            logging.warning("PM access nudge failed: %s", e)
+            break
+
+async def remind_if_not_opened(user_id: int, stage_expected: int, delay: int):
+    """Напоминаем открыть урок stage_expected, если через delay он не открыт."""
+    await asyncio.sleep(delay)
+    if get_stage(user_id) < stage_expected:
+        texts = {
+            1: "Вижу, ты ещё не открыл *первый бесплатный урок*. Забирай его сейчас 👇",
+            2: "Напомню: *урок 2* всё ещё ждёт тебя.👇",
+            3: "Остался *урок 3*. Давай доведём до результата 💸👇",
+        }
+        try:
+            await bot.send_message(user_id, texts[stage_expected], reply_markup=kb_open(stage_expected))
+        except Exception as e:
+            logging.warning("PM reminder failed: %s", e)
+
+# ========= HANDLERS =========
+
+async def start_welcome_sequence(chat_id: int):
+    """Sends the full welcome message sequence."""
+    set_stage(chat_id, 0)
+    set_pm_ok(chat_id, True)
+    # Отправляем первый блок с кнопкой
+    await send_block(chat_id, BANNER_WELCOME, WELCOME_LONG, reply_markup=kb_access_reply())
+
+
+@router.message(Command("start"))
+async def on_start(m: Message):
+    await start_welcome_sequence(m.from_user.id)
+
+
+@router.message(F.text == "🔑 ПОЛУЧИТЬ ДОСТУП")
+async def on_get_access(m: Message):
+    uid = m.from_user.id
+    stage = get_stage(uid)
+    if stage >= 1:
+        return
     
-    <div class="process-step">
-      <div class="process-number">B</div>
-      <h3 class="process-title" data-ru="Тест и гипотезы" data-en="Test & Hypotheses">Тест и гипотезы</h3>
-      <p class="process-description" data-ru="Первые результаты за 14 дней" data-en="First results in 14 days">Первые результаты за 14 дней</p>
-      <div class="process-arrow">→</div>
-    </div>
-    
-    <div class="process-step">
-      <div class="process-number">C</div>
-      <h3 class="process-title" data-ru="Масштабирование" data-en="Scaling">Масштабирование</h3>
-      <p class="process-description" data-ru="Строим систему и растим показатели" data-en="Build system and grow metrics">Строим систему и растим показатели</p>
-    </div>
-  </div>
-</section>
-
-<section class="animate-on-scroll">
-  <h2 class="section-title" data-ru="FAQ" data-en="FAQ">FAQ</h2>
-  <p class="section-subtitle" data-ru="Частые вопросы" data-en="Frequently asked questions">Частые вопросы</p>
-  
-  <div class="faq-item">
-    <div class="faq-question">
-      <span data-ru="Цена наших услуг?" data-en="What are your service prices?">Цена наших услуг?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p data-ru="Стоимость наших услуг высчитывается после первого совместного звонка 'Briefing'. Наша работа начинается от базовых пакетов, точная стоимость зависит от масштаба проекта и поставленных задач." 
-         data-en="Our service cost is calculated after the first joint 'Briefing' call. Our work starts from basic packages, exact cost depends on project scale and set tasks.">
-        Стоимость наших услуг высчитывается после первого совместного звонка "Briefing". Наша работа начинается от базовых пакетов, точная стоимость зависит от масштаба проекта и поставленных задач.
-      </p>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question">
-      <span data-ru="Сколько лидов мы получим?" data-en="How many leads will we get?">Сколько лидов мы получим?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p data-ru="Мы строим системный и комплексный маркетинг. Количество лидов зависит от нашей воронки, географии рынка, стоимости за конверсию и прочих факторов. Мы всегда работаем на результат и гарантируем достижение KPI." 
-         data-en="We build systematic and comprehensive marketing. Number of leads depends on our funnel, market geography, cost per conversion and other factors. We always work for results and guarantee KPI achievement.">
-        Мы строим системный и комплексный маркетинг. Количество лидов зависит от нашей воронки, географии рынка, стоимости за конверсию и прочих факторов. Мы всегда работаем на результат и гарантируем достижение KPI.
-      </p>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question">
-      <span data-ru="Какие рынки вы охватываете?" data-en="What markets do you cover?">Какие рынки вы охватываете?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p data-ru="Наша команда знает немецкий, английский, украинский и польский языки. Мы работаем по всему миру и умеем масштабировать проекты в рамках разных культур и рынков!" 
-         data-en="Our team knows German, English, Ukrainian and Polish languages. We work worldwide and know how to scale projects across different cultures and markets!">
-        Наша команда знает немецкий, английский, украинский и польский языки. Мы работаем по всему миру и умеем масштабировать проекты в рамках разных культур и рынков!
-      </p>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question">
-      <span data-ru="Что, если я не в EdTech?" data-en="What if I'm not in EdTech?">Что, если я не в EdTech?</span>
-      <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-      <p data-ru="У нас есть и проекты вне нашей специализации. " data-en="We also have projects outside our specialization. ">У нас есть и проекты вне нашей специализации. </p>
-      <a href="#other-services" data-ru="Посмотреть другие кейсы" data-en="View other cases">Посмотреть другие кейсы</a>
-    </div>
-  </div>
-</section>
-
-<section class="trusted-by animate-on-scroll">
-  <h3 class="trusted-title" data-ru="Нам доверяют" data-en="Trusted by">Нам доверяют</h3>
-  <div class="trusted-logos">
-    <div class="trusted-logo">Vadym.ai</div>
-    <div class="trusted-logo">YesCenter</div>
-    <div class="trusted-logo">Web3 Academy</div>
-    <div class="trusted-logo">EduTech Pro</div>
-    <div class="trusted-logo">Language Plus</div>
-  </div>
-</section>
-
-<section id="team" class="team animate-on-scroll">
-  <h2 class="section-title" data-ru="Команда" data-en="Team">Команда</h2>
-  <p class="section-subtitle" data-ru="Профессионалы, которые работают над вашим успехом" data-en="Professionals working on your success">Профессионалы, которые работают над вашим успехом</p>
-  
-  <div class="team-grid">
-    <div class="team-member">
-      <div class="team-photo">👨‍💼</div>
-      <h3 class="team-name" data-ru="Алексей Иванов" data-en="Alex Ivanov">Алексей Иванов</h3>
-      <p class="team-role" data-ru="Стратегический директор" data-en="Strategic Director">Стратегический директор</p>
-    </div>
-    
-    <div class="team-member">
-      <div class="team-photo">👩‍💻</div>
-      <h3 class="team-name" data-ru="Мария Петрова" data-en="Maria Petrova">Мария Петрова</h3>
-      <p class="team-role" data-ru="Руководитель маркетинга" data-en="Marketing Director">Руководитель маркетинга</p>
-    </div>
-    
-    <div class="team-member">
-      <div class="team-photo">👨‍🎨</div>
-      <h3 class="team-name" data-ru="Дмитрий Козлов" data-en="Dmitry Kozlov">Дмитрий Козлов</h3>
-      <p class="team-role" data-ru="Креативный директор" data-en="Creative Director">Креативный директор</p>
-    </div>
-    
-    <div class="team-member">
-      <div class="team-photo">👩‍📊</div>
-      <h3 class="team-name" data-ru="Анна Смирнова" data-en="Anna Smirnova">Анна Смирнова</h3>
-      <p class="team-role" data-ru="Аналитик данных" data-en="Data Analyst">Аналитик данных</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="animate-on-scroll">
-  <h2 class="section-title" data-ru="Готовы обсудить ваш проект?" data-en="Ready to discuss your project?">Готовы обсудить ваш проект?</h2>
-  <p class="section-subtitle" data-ru="Выберите удобное время для звонка прямо сейчас, время автоматически подстраивается под нашу временную зону" data-en="Choose a convenient time for a call right now, time automatically adjusts to our time zone">Выберите удобное время для звонка прямо сейчас, время автоматически подстраивается под нашу временную зону</p>
-  
-  <div class="calendar-container">
-    <div class="calendar-loading" id="calendar-loading">
-      <span data-ru="Загружается календарь..." data-en="Loading calendar...">Загружается календарь...</span>
-    </div>
-    <iframe 
-      src="https://cal.com/embed/cal_live_0b821391b525deeabb6b077c2a8578ca?embed-type=inline&theme=light&hide-event-type-details=false" 
-      class="calendar-embed"
-      title="Schedule a meeting"
-      frameborder="0"
-      allowfullscreen
-      style="display: none;"
-      onload="document.getElementById('calendar-loading').style.display='none'; this.style.display='block';">
-    </iframe>
-    <div class="calendar-fallback" style="display: none;" id="calendar-fallback">
-      <h3 data-ru="Не удается загрузить календарь?" data-en="Can't load calendar?">Не удается загрузить календарь?</h3>
-      <p data-ru="Свяжитесь с нами напрямую:" data-en="Contact us directly:">Свяжитесь с нами напрямую:</p>
-      <a href="https://cal.com/cal_live_0b821391b525deeabb6b077c2a8578ca" target="_blank" data-ru="Открыть календарь в новом окне" data-en="Open calendar in new window">Открыть календарь в новом окне</a>
-    </div>
-  </div>
-  
-  <div class="contact-info">
-    <a href="mailto:hello@edtechagency.com" class="contact-item">
-      <span>📧</span>
-      <span>hello@edtechagency.com</span>
-    </a>
-    <a href="https://linkedin.com/company/edtech-agency" class="contact-item" target="_blank">
-      <span>🔗</span>
-      <span>LinkedIn</span>
-    </a>
-    <a href="https://t.me/edtechagency" class="contact-item" target="_blank">
-      <span>🌐</span>
-      <span>Telegram</span>
-    </a>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-links">
-    <a href="#" data-ru="Политика конфиденциальности" data-en="Privacy Policy">Политика конфиденциальности</a>
-    <a href="#" data-ru="Условия использования" data-en="Terms of Service">Условия использования</a>
-    <a href="#" data-ru="Cookies" data-en="Cookies">Cookies</a>
-  </div>
-  <p data-ru="© 2025 EdTech Agency. Все права защищены." data-en="© 2025 EdTech Agency. All rights reserved.">© 2025 EdTech Agency. Все права защищены.</p>
-</footer>
-
-<!-- Cal.com Embed Script -->
-<script src="https://cal.com/embed.js" async></script>
-
-<script>
-  // Cal.com Integration
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Cal.com when the script loads
-    if (typeof Cal !== 'undefined') {
-      Cal("init");
-    }
-    
-    // Add click handlers for booking buttons
-    document.querySelectorAll('.cal-booking-btn').forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
+    try:
+        await m.delete()
+    except Exception:
+        pass
         
-        // Check if Cal.com is loaded
-        if (typeof Cal !== 'undefined') {
-          // Cal.com popup will be triggered automatically by data attributes
-          console.log('Cal.com popup triggered');
-        } else {
-          // Fallback: scroll to contact section with iframe
-          console.log('Cal.com not loaded, using fallback');
-          document.getElementById('contact').scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
+    # Reply to the user's message, removing the ReplyKeyboardMarkup
+    sent_message = await m.answer("ДОСТУП ПОЛУЧЕН! 🔓 Уроки доступны.", reply_markup=ReplyKeyboardRemove())
+
+    # Schedule deletion of the message after 1 second
+    asyncio.create_task(delete_message_after_delay(m.chat.id, sent_message.message_id, 1))
+
+    # Отправляем интро к уроку 1 с кнопкой "ОТКРЫТЬ УРОК 1"
+    await send_block(uid, BANNER_AFTER4, LESSON1_INTRO, reply_markup=kb_open(1), parse_mode=ParseMode.HTML)
+
+    set_stage(uid, 1)
+    asyncio.create_task(remind_if_not_opened(uid, 1, REM1_DELAY))
+    asyncio.create_task(access_nurture(uid))
+    asyncio.create_task(send_course_posts(uid))
+
+
+
+
+
+
+
+
+
+@router.callback_query(F.data == "buy_course")
+async def on_buy_course(cb: CallbackQuery):
+    await cb.answer("Открываю ссылку на курс...")
+    set_loop_stopped(cb.from_user.id, True)
+    await cb.message.answer(f"Вот ссылка на курс: {SITE_URL}")
+
+
+@router.callback_query(F.data.startswith("open:"))
+
+async def on_open(cb: CallbackQuery):
+    await cb.answer()
+    await cb.message.edit_reply_markup(reply_markup=None)
+
+    try:
+        n = int(cb.data.split(":")[1])
+    except Exception:
+        return
+
+    uid = cb.from_user.id
+
+    if n == 3:
+                await send_block(cb.message.chat.id, BANNER_AFTER2, GATE_BEFORE_L3, reply_markup=kb_subscribe_then_l3(), parse_mode=ParseMode.HTML)
+
+
+    URLS = {1: LESSON1_URL, 2: LESSON2_URL}
+    if n != 3:
+        await send_url_only(cb.message.chat.id, URLS[n])
+
+    stage = get_stage(uid)
+    if n > stage:
+        set_stage(uid, n)
+
+    # Урок 1 и 2 → автопереход
+    if n in (1, 2):
+        await asyncio.sleep(1)
+        asyncio.create_task(auto_send_next_lesson(uid, n))
+
+
+    # Урок 3 → блоки и рассылка постов
+    if n == 3:
+        # файл уже отправили выше; только блоки/рассылка
+        async def delayed_blocks(chat_id: int):
+            await asyncio.sleep(10)  # Wait 10 seconds after lesson 3
+            await send_block(chat_id, BANNER_BLOCK6, BLOCK_6, reply_markup=kb_buy_course(), parse_mode=ParseMode.HTML)
+            await asyncio.sleep(10)  # Wait another 10 seconds
+            await send_block(chat_id, BANNER_BLOCK7, BLOCK_7, reply_markup=kb_apply_form(), parse_mode=ParseMode.HTML)
+
+        asyncio.create_task(delayed_blocks(cb.message.chat.id))
+
+
+@router.message(F.video_note)
+async def capture_video_note(m: Message):
+    fid = m.video_note.file_id
+    await m.reply(f"Captured video_note file_id:\n<code>{fid}</code>\nlen={len(fid)}", parse_mode=ParseMode.HTML)
+    # сохранить в stats.json для удобства (для L3_FOLLOWUP_FILE)
+    d = _read()
+    d.setdefault("meta", {})["L3_FOLLOWUP_FILE"] = fid
+    _write(d)
+    logging.info("Captured and saved L3_FOLLOWUP_FILE as file_id=%s", fid)
+    await m.reply("Сохранил file_id в store (stats.json). Теперь можно использовать /test_l3.", parse_mode=None)
+@router.callback_query(F.data == "check_diary")
+async def check_diary(cb: CallbackQuery):
+    await cb.answer("Проверяем подписку...", show_alert=False)
     
-    // Handle Cal.com script load errors
-    window.addEventListener('error', function(e) {
-      if (e.filename && e.filename.includes('cal.com')) {
-        console.warn('Cal.com script failed to load, using iframe fallback');
-        // Show fallback message
-        const fallback = document.getElementById('calendar-fallback');
-        if (fallback) {
-          fallback.style.display = 'block';
-        }
-      }
-    });
-  });
+    uid = cb.from_user.id
 
-  // FAQ Toggle
-  document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-      const faqItem = question.parentElement;
-      const answer = question.nextElementSibling;
-      const toggle = question.querySelector('.faq-toggle');
-      
-      faqItem.classList.toggle('active');
-      
-      if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-        toggle.textContent = '+';
-      } else {
-        answer.style.display = 'block';
-        toggle.textContent = '−';
-      }
-    });
-  });
+    # Делаем небольшую паузу, чтобы дать Telegram время обработать подписку
+    await asyncio.sleep(3) 
 
-  // Expandable Cards
-  document.querySelectorAll('.expandable-card').forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('expanded');
-    });
-  });
+    if await is_subscribed_telegram(uid):
+        # Убираем кнопки после нажатия
+        await cb.message.edit_reply_markup(reply_markup=None)
+        # Отправляем файл L3_FOLLOWUP_FILE
+        await _send_file_with_fallback(cb.message.chat.id, L3_FOLLOWUP_FILE, None)
+        # Отправляем ссылку на 3 урок
+        URLS = {1: LESSON1_URL, 2: LESSON2_URL, 3: LESSON3_URL}
+        await send_url_only(cb.message.chat.id, URLS[3])
+    else:
+        txt = (
+            "Пока не вижу твою подписку на дневник.\n"
+            "Нажми «Подписаться на дневник», подпишись, и затем снова жми «ПРОВЕРИТЬ»."
+        )
+        # Не убираем кнопки, если проверка не удалась
+        await cb.message.answer(txt, reply_markup=kb_subscribe_then_l3())
 
-  // Mobile Menu
-  const menuBtn = document.querySelector('.menu-btn');
-  const navContainer = document.querySelector('.nav-container');
-  
-  menuBtn.addEventListener('click', () => {
-    navContainer.classList.toggle('active');
-  });
 
-  // Language Toggle
-  const langButtons = document.querySelectorAll('.lang-btn');
-  const elementsWithLang = document.querySelectorAll('[data-ru][data-en]');
-  
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.dataset.lang;
-      
-      // Update active button
-      langButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      // Update content
-      elementsWithLang.forEach(element => {
-        if (element.dataset[lang]) {
-          element.textContent = element.dataset[lang];
-        }
-      });
-      
-      // Update HTML lang attribute
-      document.documentElement.lang = lang;
-    });
-  });
+@router.chat_join_request()
+async def on_join_request(req: ChatJoinRequest):
+    uid = req.from_user.id
 
-  // Smooth Scrolling for Navigation Links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
+    # если это твой ДНЕВНИК (канал с заявками)
+    if DIARY_TG_CHAT_ID and req.chat.id == DIARY_TG_CHAT_ID:
+        await req.approve()
+        logging.info("Silently approved diary join request for user %s in chat %s", uid, req.chat.id)
+        set_diary_request(uid, True)
+        return
 
-  // Scroll Animation
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
+    # For all other channels, approve and try to start the full welcome sequence.
+    # await req.approve()
+    logging.info(f"Approved join request for user {uid} in chat {req.chat.id}.")
+    try:
+        logging.info(f"Attempting to proactively start welcome sequence for user {uid}.")
+        await start_welcome_sequence(uid)
+        logging.info(f"Successfully started welcome sequence for user {uid}.")
+    except TelegramForbiddenError:
+        logging.warning(f"Cannot send proactive message to user {uid}. They must start the bot manually.")
+    except Exception as e:
+        logging.error(f"An unexpected error occurred in on_join_request for user {uid}: {e}")
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-      }
-    });
-  }, observerOptions);
 
-  document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-  });
+@router.message(Command("test_l3"))
+async def test_l3(m: Message):
+    file_or_id = L3_FOLLOWUP_FILE
+    if not file_or_id:
+        return await m.answer("L3_FOLLOWUP_FILE порожній у .env", parse_mode=None)
+    try:
+        result = await _send_file_with_fallback(m.chat.id, file_or_id, L3_FOLLOWUP_CAPTION or None)
+        await m.answer(f"Результат отправки: {result}", parse_mode=None)
+    except Exception as e:
+        logging.exception("test_l3 failed: %s", e)
+        await m.answer(f"❌ Не вдалося надіслати: {e}", parse_mode=None)
 
-  // Header Background on Scroll
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-      header.style.background = 'rgba(15, 23, 42, 0.98)';
-    } else {
-      header.style.background = 'rgba(15, 23, 42, 0.95)';
-    }
-  });
-</script>
+@router.message(F.forward_from_chat)
+async def on_forwarded_from_channel(message: Message):
+    ch = message.forward_from_chat
+    await message.answer(
+        f"Название: {ch.title}\nID: <code>{ch.id}</code>"
+    )
 
-</body>
-</html>
+@router.message(Command("diag"))
+async def diag(m: Message):
+    me = await bot.get_me()
+    await m.answer(
+        f"*Diag*\nBot: @{me.username}\nDEEP_LINK: {DEEP_LINK}\n"
+        f"REM1/2/3={REM1_DELAY}/{REM2_DELAY}/{REM3_DELAY}\n"
+        f"NEXT_AFTER_1/2={NEXT_AFTER_1}/{NEXT_AFTER_2}",
+        parse_mode=ParseMode.MARKDOWN
+    )
+
+@router.message(Command("stats"))
+async def stats(m: Message):
+    if ADMIN_ID and m.from_user.id != ADMIN_ID:
+        return
+    d = _read()
+    await m.answer(f"Users tracked: {len(d.get('users', {}))}")
+
+@router.message(Command("test_error"))
+async def test_error(m: Message):
+    if ADMIN_ID and m.from_user.id != ADMIN_ID:
+        return
+    # Test the error notification system
+    await send_admin_message("🧪 Test notification: Error notification system is working!")
+    await m.answer("Test notification sent to admin.")
+
+def extract_file_id(msg: Message):
+    ct = msg.content_type
+    if ct == ContentType.PHOTO and msg.photo:
+        return msg.photo[-1].file_id, ct
+    if ct == ContentType.DOCUMENT and msg.document:
+        return msg.document.file_id, ct
+    if ct == ContentType.VIDEO and msg.video:
+        return msg.video.file_id, ct
+    if ct == ContentType.AUDIO and msg.audio:
+        return msg.audio.file_id, ct
+    if ct == ContentType.VOICE and msg.voice:
+        return msg.voice.file_id, ct
+    if ct == ContentType.VIDEO_NOTE and msg.video_note:
+        return msg.video_note.file_id, ct
+    if ct == ContentType.STICKER and msg.sticker:
+        return msg.sticker.file_id, ct
+    if ct == ContentType.ANIMATION and msg.animation:
+        return msg.animation.file_id, ct
+    return None, ct
+
+@router.message()
+async def any_dm_message(message: Message):
+    fid, ct = extract_file_id(message)
+    if fid:
+        pass
+    else:
+        pass
+
+@router.channel_post()
+async def any_channel_post(message: Message):
+    fid, ct = extract_file_id(message)
+    if fid:
+        await message.reply(
+            f"content_type: <b>{ct}</b>\nfile_id:\n<code>{fid}</code>"
+        )
+    else:
+        await message.reply(f"content_type: <b>{ct}</b>\n(немає file_id)")
+
+# ========= WEBHOOK INFRASTRUCTURE =========
+
+async def on_startup(app: web.Application):
+    """Set webhook on startup"""
+    await bot.delete_webhook(drop_pending_updates=True)
+    if not EXTERNAL_URL:
+        raise RuntimeError("External URL is required for webhook mode. Platform should provide RENDER_EXTERNAL_URL, RAILWAY_STATIC_URL, or REPLIT_DEV_DOMAIN.")
+    webhook_url = f"{EXTERNAL_URL}/webhook/{WEBHOOK_SECRET}"
+    await bot.set_webhook(
+        url=webhook_url,
+        secret_token=WEBHOOK_SECRET,
+    )
+    logging.info("Webhook set to: %s", webhook_url)
+
+async def on_shutdown(app: web.Application):
+    """Clean up on shutdown"""
+    await bot.session.close()
+
+async def handle_webhook(request: web.Request):
+    """Handle incoming webhook requests from Telegram"""
+    if request.match_info.get("token") != WEBHOOK_SECRET:
+        return web.Response(status=403)
+
+    try:
+        data = await request.json()
+        update = Update.model_validate(data)
+        dp = request.app["dp"]
+        await dp.feed_update(bot, update)
+        return web.Response(text="OK")
+    except Exception as e:
+        logging.error("Webhook error: %s", e)
+        await send_admin_message(f"❌ Webhook error: {e}")
+        return web.Response(status=500)
+
+def make_web_app():
+    """Create and configure the web application"""
+    app = web.Application()
+    dp = Dispatcher()
+    dp.include_router(router)
+    app["dp"] = dp
+    
+    # Add webhook route
+    app.router.add_post(f"/webhook/{{token}}", handle_webhook)
+    
+    # Add lifecycle handlers
+    app.on_startup.append(on_startup)
+    app.on_shutdown.append(on_shutdown)
+    
+    return app
+
+async def run_polling():
+    """Run bot in polling mode"""
+    dp = Dispatcher()
+    dp.include_router(router)
+
+    try:
+        await bot.delete_webhook(drop_pending_updates=True)
+    except Exception as e:
+        logging.error("Failed to delete webhook in polling mode: %s", e)
+        await send_admin_message(f"❌ Error deleting webhook in polling mode: {e}")
+
+    logging.info("Starting bot in polling mode...")
+    try:
+        await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
+    except Exception as e:
+        logging.error("Polling failed: %s", e)
+        await send_admin_message(f"❌ Polling error: {e}")
+        raise
+
+async def main():
+    """Initialize bot and set deep link"""
+    global DEEP_LINK
+    me = await bot.get_me()
+    DEEP_LINK = f"https://t.me/{me.username}?start=from_channel"
+    logging.info("Bot: @%s, Deep-link: %s", me.username, DEEP_LINK)
+
+async def run_webhook():
+    """Run webhook server for production"""
+    logging.info("Running in webhook mode on port %s", PORT)
+    global DEEP_LINK
+    try:
+        me = await bot.get_me()
+        DEEP_LINK = f"https://t.me/{me.username}?start=from_channel"
+        logging.info("Bot: @%s, Deep-link: %s", me.username, DEEP_LINK)
+    except Exception as e:
+        logging.error("Failed to get bot info: %s", e)
+        await send_admin_message(f"❌ Failed to get bot info: {e}")
+        raise
+
+    try:
+        app = make_web_app()
+        runner = web.AppRunner(app)
+        await runner.setup()
+        site = web.TCPSite(runner, host="0.0.0.0", port=PORT)
+        await site.start()
+
+        logging.info("Webhook server started on 0.0.0.0:%s", PORT)
+        # Keep the server running
+        try:
+            await asyncio.Future()  # run
+        except KeyboardInterrupt:
+            pass
+        finally:
+            await runner.cleanup()
+    except Exception as e:
+        logging.error("Webhook server failed: %s", e)
+        await send_admin_message(f"❌ Webhook server error: {e}")
+        raise
+
+if __name__ == "__main__":
+    if RUN_MODE.lower() == "polling":
+        logging.info("Running in polling mode")
+        asyncio.run(run_polling())
+    else:
+        logging.info("Running in webhook mode")
+        asyncio.run(run_webhook())
+
+
